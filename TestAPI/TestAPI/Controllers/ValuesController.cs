@@ -46,6 +46,17 @@ namespace TestAPI.Controllers
             return retarray;
         }
 
+        [HttpPost]
+        public object PostIsPalindrome([FromBody]object[] value)
+        {
+            var retarray = new bool[value.Length];
+            for (int i = 0; i < value.Length; i++)
+            {
+                retarray[i] = Methods.Methods.IsPalindrome(value[i].ToString());
+            }
+            return retarray;
+        }
+
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {

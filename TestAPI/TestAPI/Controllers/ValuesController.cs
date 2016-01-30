@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 using TestAPI.Methods;
 
@@ -53,6 +54,25 @@ namespace TestAPI.Controllers
             for (int i = 0; i < value.Length; i++)
             {
                 retarray[i] = Methods.Methods.IsPalindrome(value[i].ToString());
+            }
+            return retarray;
+        }
+
+        [HttpPost]
+        public object PostFizzBuzz([FromBody]object[] value)
+        {
+            var retarray = new string[value.Length];
+            for (int i = 0; i < value.Length; i++)
+            {
+                var srb = new StringBuilder();
+                int val = Convert.ToInt16(value[i]);
+                if (val % 2 == 0)
+                    srb.Append("Fizz");
+                if (val % 3 == 0)
+                    srb.Append("Buzz");
+                if (srb.Length == 0)
+                    srb.Append(val);
+                retarray[i] = srb.ToString();
             }
             return retarray;
         }

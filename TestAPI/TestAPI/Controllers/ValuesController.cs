@@ -77,6 +77,65 @@ namespace TestAPI.Controllers
             return retarray;
         }
 
+        [HttpPost]
+        public object PostSumSquares([FromBody]object[] value)
+        {
+            var retarray = new int[value.Length];
+            for (int i = 0; i < value.Length; i++)
+            {
+                var result = Methods.Methods.SumSquares(Convert.ToInt16(value[i]));
+                retarray[i] = result;
+            }
+            return retarray;
+        }
+
+        [HttpPost]
+        public object PostIsPrime([FromBody]object[] value)
+        {
+            var retarray = new bool[value.Length];
+            for (int i = 0; i < value.Length; i++)
+            {
+                var result = Methods.Methods.IsPrime(Convert.ToInt16(value[i]));
+                retarray[i] = result;
+            }
+            return retarray;
+        }
+
+        [HttpPost]
+        public object PostGetFib([FromBody]object[] value)
+        {
+            var retarray = new int[value.Length];
+            for (int i = 0; i < value.Length; i++)
+            {
+                var result = Methods.Methods.GetFib(Convert.ToInt16(value[i]));
+                retarray[i] = result;
+            }
+            return retarray;
+        }
+
+        [HttpPost]
+        public object PostSexyPrimes([FromBody]object[] value)
+        {
+            int max = Convert.ToInt16(value[0]);
+            var lst = Methods.Methods.SexyPrimes(max);
+            var retlst = new List<List<int>>();
+            foreach (var i in lst)
+            {
+                retlst.Add(new List<int>() { i, i + 6 });
+            }
+            return retlst;
+        }
+
+        [HttpPost]
+        public object PostPyTriplets([FromBody]object[] value)
+        {
+            int max = Convert.ToInt16(value[0]);
+            var lst = Methods.Methods.PyTriplets(max);
+            return lst;
+        }
+
+
+
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {
